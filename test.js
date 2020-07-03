@@ -1,48 +1,23 @@
-class Player {
-  constructor(name, role, kind) {
-    this.name = name; // player's name
-    this.role = role; // inventor, trickster, mage, warrior, guardian, spy
-    this.kind = kind; // dog, monkey, bear, fox, cat, rabbit
-    this.health = 10; // starting health
-    this.ATK = function ATK(cmd, name) { // attack player with this name
-      const ATK = cmd === 'HIT' ? this.HIT : this.SPL;
-      const player = Players.filter(plr => plr.name == name)[0];
-      const BLK = cmd === 'HIT' ? player.DEX : player.WIT;
+const playerInfo = () => {
 
-      const plrA_Roll = ATK + rollDice();
-      const plrB_Roll = BLK + rollDice();
-      const plrB_DEF = player.DEF + rollDice();
+  window.players = {
+    num,
+    names,
+    kinds,
+    roles,
+  };
 
-      if (plrA_Roll - plrB_Roll > 0) {
-        (plrA_Roll - plrB_DEF > 0) ? Players.filter(plr => plr.name == name)[0].health -= 1: 0;
-      }
-    }
-  }
-  get HIT() {
-    return stats('HIT', this.role, this.kind);
-  }
-  get DEX() {
-    return stats('DEX', this.role, this.kind);
-  }
-  get SPD() {
-    return stats('SPD', this.role, this.kind);
-  }
-  get DEF() {
-    return stats('DEF', this.role, this.kind);
-  }
-  get WIT() {
-    return stats('WIT', this.role, this.kind);
-  }
-  get SPL() {
-    return stats('SPL', this.role, this.kind);
-  }
-  set HP(num) {
-    typeof num === 'number' ? this.health += num : this.health += 1;
-  }
-}
+  players.num = prompt("Select number of players: (max 4)");
 
-// [HIT, DEX, SPD, DEF, WIT, SPL] ~ balanced (paper, rock, scissors)
-function stats(stat, role, kind) {
+  // Check if valid entry for number of players
+  if (players.num > 4 || players.num < 1) {
+    players.num = prompt("Invalid! Select number of players: (max 4)");
+  }
+
+  // Players asked for name
+  for (let i = 0; i < players.num; i++) {
+    players.names[i] = prompt(`Player ${i + 1}, enter your name: `);
+  }
 
   const roles = {
     inventor: [0, 0, -1, 0, 2, 0],
@@ -62,33 +37,22 @@ function stats(stat, role, kind) {
     rabbit: [-1, 5, 5, -3, -5, 1]
   }
 
-  switch (stat) {
-    case 'HIT':
-      return roles[role][0] + kinds[kind][0];
-    case 'DEX':
-      return roles[role][1] + kinds[kind][1];
-    case 'SPD':
-      return roles[role][2] + kinds[kind][2];
-    case 'DEF':
-      return roles[role][3] + kinds[kind][3];
-    case 'WIT':
-      return roles[role][4] + kinds[kind][4];
-    case 'SPL':
-      return roles[role][5] + kinds[kind][5];
+  // Players asked for kind
+  for (let i = 0; i < players.num; i++) {
+    console.table(kinds);
+    let kind = prompt(`Player ${i + 1}, enter kind: `);
+
+    while (true) {
+      switch (kind) {
+        case "dog": case "cat": case "monkey": case "bear": case "fox": case "rabbit":  
+          players.kinds[i] = kind;
+          break;
+        default:
+          kind = prompt(`Invalid! Player ${i + 1}, enter kind: `);
+      }
+    }   
   }
 
 }
 
-// 1d6
-function rollDice() {
-  return 1 + Math.floor(Math.random() * 6);
-}
-
-const Players = [];
-
-Players.push(new Player('Spike', 'trickster', 'dog'));
-Players.push(new Player('Abu', 'spy', 'monkey'));
-
-Players[0].ATK('HIT', "Abu");
-
-console.log(Players[1].health);
+playerInfo();
