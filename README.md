@@ -8,25 +8,25 @@ I wanted to keep this as simple as possible and not have a player think about ma
 
 ### Kinds
 
-| Kind   | HIT | DEX | SPD | DEF | WIT | SPL |
+| Kinds  | HIT | SPL | DEX | WIT | DEF | SPD |
 | ------ | --- | --- | --- | --- | --- | --- |
-| Dog    | +5  | +3  | +3  | +1  | -3  | -5  |
-| Monkey | -5  | -3  | -3  | -1  | +3  | +5  |
-| Bear   | +3  | +1  | +1  | +5  | -1  | -3  |
-| Fox    | -3  | -1  | -1  | -5  | +1  | +3  |
-| Cat    | +1  | -5  | -5  | +3  | +5  | -1  |
-| Rabbit | -1  |  5  | +5  | -3  | -5  | +1  |
+| Dog    | +5  | +0  | +1  | +3  | +4  | +2  |
+| Monkey | +3  | +2  | +5  | +1  | +0  | +4  |
+| Cat    | +0  | +5  | +2  | +4  | +3  | +1  |
+| Fox    | +2  | +3  | +4  | +5  | +1  | +0  |
+| Bear   | +4  | +1  | +0  | +2  | +5  | +3  |
+| Rabbit | +1  | +4  | +3  | +0  | +2  | +5  |
 
 ### Roles
 
-| Role      | HIT | DEX | SPD | DEF | WIT | SPL |
+| Roles     | HIT | DEX | SPD | DEF | WIT | SPL |
 | --------- | --- | --- | --- | --- | --- | --- |
-| Inventor  | +0  | +0  | -1  | +0  | -2  | +0  |
-| Trickster | +0  | +0  | +2  | +0  | -1  | +0  |
-| Mage      | -1  | +0  | +0  | +0  | +0  | +2  |
-| Warrior   | +2  | +0  | +0  | +0  | +0  | -1  |
-| Guardian  | +0  | -1  | +0  | +2  | +0  | +0  |
-| Spy       | +0  | +2  | +0  | -1  | +0  | +0  |
+| Inventor  | +0  | +0  | +1  | +0  | +0  | +0  |
+| Trickster | +0  | +0  | +0  | +0  | +1  | +0  |
+| Mage      | +0  | +0  | +0  | +0  | +0  | +1  |
+| Warrior   | +1  | +0  | +0  | +0  | +0  | +0  |
+| Guardian  | +0  | +0  | +0  | +1  | +0  | +0  |
+| Spy       | +0  | +1  | +0  | +0  | +0  | +0  |
 
 ## Attacking
 
@@ -34,7 +34,7 @@ For each object that is constructed, an attack function is given specifying whic
 
 Player A's *HIT* vs Player B's *DEX* **or** Player A's *SPL* vs Player B's *WIT*
 
-If Player A's value is greater, Player B gets another chance to "roll again" + their defence.
+If Player A's value is greater, Player B gets another chance to "roll again" + their defense.
 If Player B fails, reduce their health by only 1.
 If Player A fails, nothing happens.
 
